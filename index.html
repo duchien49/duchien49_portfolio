@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio cá nhân của Hiền Đức - sinh viên Công nghệ thông tin, định hướng Software Engineering và phát triển dự án Start Again.">
+  <title>Hiền Đức | Portfolio</title>
+  <style>
+    :root {
+      --site-primary: #8b7bb8;
+      --site-secondary: #e6e0f3;
+      --site-blue: #dceef7;
+      --site-blue-strong: #b9ddeb;
+      --site-background: #fffaf5;
+      --site-on-primary: #ffffff;
+      --site-on-secondary: #39324a;
+      --site-on-background: #302b38;
+      --site-font-body: Inter, "Segoe UI", Arial, sans-serif;
+      --site-font-heading: Inter, "Segoe UI", Arial, sans-serif;
+      --site-heading-scale: 1;
+      --site-spacing-scale: 1;
+      --site-radius-scale: 1;
+      --site-decoration-opacity: 1;
+      color-scheme: light dark;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--site-font-body);
+      background: light-dark(#fffaf5, #17151c);
+      color: light-dark(#302b38, #f4f0f8);
+      line-height: 1.65;
+    }
+    .app-root {
+      min-height: 100vh;
+      width: 100%;
+      background-color: var(--site-background);
+      color: var(--site-on-background);
+      border-radius: 0;
+    }
+    a { color: inherit; }
+    .container { width: min(1080px, calc(100% - 40px)); margin: 0 auto; }
+    header { border-bottom: 1px solid light-dark(#e9e1ec, #3b3544); }
+    nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: calc(18px * var(--site-spacing-scale)) 0; }
+    .brand { color: var(--site-primary); font-weight: 800; text-decoration: none; letter-spacing: .02em; }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 20px; }
+    .nav-links a { text-decoration: none; font-size: .94rem; opacity: .85; }
+    .nav-links a:hover { text-decoration: underline; }
+    .hero { padding: clamp(56px, 9vw, 100px) 0 72px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 48px; align-items: center; }
+    .eyebrow { color: var(--site-primary); font-size: .82rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    h1, h2, h3 { font-family: var(--site-font-heading); line-height: 1.15; }
+    h1 { font-size: clamp(2.6rem, 6vw, 4.8rem); letter-spacing: -.055em; margin: 12px 0 18px; }
+    h2 { font-size: calc(clamp(1.8rem, 3.5vw, 2.6rem) * var(--site-heading-scale)); letter-spacing: -.035em; margin: 0 0 20px; }
+    h3 { font-size: 1.2rem; margin: 0 0 10px; }
+    .lead { font-size: clamp(1.04rem, 2vw, 1.2rem); max-width: 650px; opacity: .88; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+    .button { display: inline-block; padding: 11px 18px; border-radius: calc(10px * var(--site-radius-scale)); border: 1px solid var(--site-primary); text-decoration: none; font-weight: 700; }
+    .button.primary { background: var(--site-primary); color: var(--site-on-primary); }
+    .button.secondary { color: var(--site-primary); }
+    .profile-card { background: var(--site-blue); color: #303b48; border-radius: calc(24px * var(--site-radius-scale)); padding: 28px; position: relative; overflow: hidden; }
+    .profile-mark { width: 92px; height: 92px; border-radius: 50%; background: #c9bddf; color: #39324a; display: grid; place-items: center; font-size: 2rem; font-weight: 800; margin-bottom: 20px; }
+    .profile-card p { margin: 8px 0; }
+    section { padding: 68px 0; }
+    .section-intro { max-width: 700px; opacity: .82; margin-top: -8px; margin-bottom: 28px; }
+    .about-grid, .project-grid, .skill-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .panel { border: 1px solid light-dark(#e9e1ec, #3b3544); border-radius: calc(16px * var(--site-radius-scale)); padding: 24px; background: light-dark(#fffefe, #211e28); }
+    .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .project-label { display: inline-block; font-size: .78rem; font-weight: 800; color: var(--site-primary); background: var(--site-secondary); padding: 4px 9px; border-radius: 999px; margin-bottom: 12px; }
+    ul.clean { margin: 12px 0 0; padding-left: 20px; }
+    .skill-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .skill-grid .panel { padding: 20px; }
+    .skill-grid p, .panel p { margin-bottom: 0; }
+    .timeline { display: grid; gap: 14px; }
+    .timeline-item { border-left: 3px solid var(--site-primary); padding: 4px 0 4px 18px; }
+    .timeline-item strong { display: block; }
+    .contact { background: var(--site-secondary); color: #302b38; }
+    .contact .eyebrow { color: #65558e; }
+    .contact .button { border-color: #8b7bb8; }
+    .contact a { text-underline-offset: 4px; }
+    footer { padding: 24px 0; font-size: .9rem; opacity: .75; }
+    .small-note { font-size: .9rem; opacity: .78; }
+    @media (max-width: 760px) {
+      .container { width: min(100% - 28px, 600px); }
+      nav { align-items: flex-start; flex-direction: column; }
+      .nav-links { gap: 12px 16px; }
+      .hero { grid-template-columns: 1fr; gap: 28px; padding-top: 52px; }
+      .about-grid, .project-grid, .skill-grid { grid-template-columns: 1fr; }
+      section { padding: 48px 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-root">
+    <header>
+      <div class="container">
+        <nav aria-label="Điều hướng chính">
+          <a class="brand" href="#home">HIỀN ĐỨC / PORTFOLIO</a>
+          <div class="nav-links">
+            <a href="#about">Giới thiệu</a>
+            <a href="#projects">Dự án</a>
+            <a href="#skills">Kỹ năng</a>
+            <a href="#contact">Liên hệ</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="container hero" id="home">
+        <div>
+          <div class="eyebrow">Sinh viên Công nghệ thông tin</div>
+          <h1>Xin chào, mình là Hiền Đức.</h1>
+          <p class="lead">Mình đang học Software Engineering, tập trung vào lập trình, giải quyết vấn đề và xây dựng sản phẩm có thể sử dụng trong thực tế. Mình tin rằng khởi nghiệp bắt đầu từ việc học thật chắc, thử nghiệm nhỏ và kiên trì cải thiện.</p>
+          <div class="actions">
+            <a class="button primary" href="#projects">Xem dự án</a>
+            <a class="button secondary" href="#contact">Kết nối với mình</a>
+          </div>
+        </div>
+        <aside class="profile-card" aria-label="Thông tin nhanh">
+          <div class="profile-mark" aria-hidden="true">Đ</div>
+          <h3>Đang trên hành trình xây dựng</h3>
+          <p><strong>Định hướng:</strong> Software Engineer</p>
+          <p><strong>Quan tâm:</strong> C++, game/app, tư duy sản phẩm</p>
+          <p><strong>Tinh thần:</strong> Học hỏi – thực hành – cải tiến</p>
+        </aside>
+      </section>
+
+      <section id="about">
+        <div class="container">
+          <div class="eyebrow">01 / Giới thiệu</div>
+          <h2>Học để làm được việc thật.</h2>
+          <p class="section-intro">Mình là sinh viên Công nghệ thông tin tại Trường Đại học Giao thông vận tải TP.HCM. Mình đang củng cố kiến thức nền tảng và thực hành qua bài tập, dự án cá nhân cũng như làm việc nhóm.</p>
+          <div class="about-grid">
+            <article class="panel">
+              <h3>Mục tiêu hiện tại</h3>
+              <ul class="clean">
+                <li>Nắm vững C++, cấu trúc dữ liệu và giải thuật.</li>
+                <li>Rèn kỹ năng thiết kế, xây dựng và kiểm thử phần mềm.</li>
+                <li>Hoàn thiện portfolio để chuẩn bị ứng tuyển thực tập.</li>
+              </ul>
+            </article>
+            <article class="panel">
+              <h3>Cách mình làm việc</h3>
+              <ul class="clean">
+                <li>Chia vấn đề lớn thành các bước nhỏ.</li>
+                <li>Ưu tiên hiểu bản chất thay vì chỉ sao chép lời giải.</li>
+                <li>Lắng nghe góp ý, phối hợp nhóm và cải thiện sau mỗi lần thử.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" style="background: light-dark(#edf6fa, #1c1922);">
+        <div class="container">
+          <div class="eyebrow">02 / Dự án</div>
+          <h2>Từ ý tưởng đến sản phẩm.</h2>
+          <p class="section-intro">Một vài hướng dự án mình đang học hỏi và phát triển. Nội dung được trình bày đúng với tiến độ học tập hiện tại, không xem ý tưởng là sản phẩm đã hoàn thiện.</p>
+          <div class="project-grid">
+            <article class="panel">
+              <span class="project-label">Dự án game</span>
+              <h3>Start Again</h3>
+              <p>Ý tưởng game mô phỏng cuộc sống và kinh doanh 2D, nơi người chơi bắt đầu lại với nguồn lực giới hạn, đưa ra quyết định và phát triển sự nghiệp.</p>
+              <ul class="clean">
+                <li><strong>Mục tiêu:</strong> học quy trình làm game và biến ý tưởng thành trải nghiệm có thể chơi.</li>
+                <li><strong>Đang tập trung:</strong> thống nhất ý tưởng, học Godot, phân chia công việc và thiết kế tài liệu hệ thống.</li>
+              </ul>
+            </article>
+            <article class="panel">
+              <span class="project-label">Luyện tập phần mềm</span>
+              <h3>Bài tập và ứng dụng học tập</h3>
+              <p>Thực hành C++, cấu trúc dữ liệu, lập trình web, cơ sở dữ liệu và lập trình mạng thông qua bài tập môn học và các ứng dụng nhỏ.</p>
+              <ul class="clean">
+                <li><strong>Mục tiêu:</strong> hiểu cách các thành phần phần mềm hoạt động cùng nhau.</li>
+                <li><strong>Đang tập trung:</strong> viết mã dễ đọc, gỡ lỗi có phương pháp và ghi lại kiến thức đã học.</li>
+              </ul>
+            </article>
+          </div>
+          <p class="small-note">Lưu ý: Khi có bản demo hoặc mã nguồn công khai, hãy bổ sung liên kết GitHub/demo vào từng dự án.</p>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="container">
+          <div class="eyebrow">03 / Kỹ năng</div>
+          <h2>Nền tảng đang xây dựng.</h2>
+          <div class="skill-grid">
+            <article class="panel"><h3>Lập trình</h3><p>C++, HTML, CSS và kiến thức nhập môn về phát triển ứng dụng.</p></article>
+            <article class="panel"><h3>Nền tảng CNTT</h3><p>Cấu trúc dữ liệu & giải thuật, cơ sở dữ liệu, mạng máy tính và tư duy thiết kế phần mềm.</p></article>
+            <article class="panel"><h3>Làm việc</h3><p>Tự học, tìm lỗi từng bước, làm việc nhóm, tiếp nhận phản hồi và trình bày ý tưởng.</p></article>
+          </div>
+          <p class="small-note">Các kỹ năng trên là những nội dung đang học và thực hành; mức độ thành thạo sẽ được cập nhật theo dự án thực tế.</p>
+        </div>
+      </section>
+
+      <section style="background: light-dark(#f5eff8, #1c1922);">
+        <div class="container">
+          <div class="eyebrow">04 / Hướng phát triển</div>
+          <h2>Tiến bộ từng bước, không ngừng thử nghiệm.</h2>
+          <div class="timeline">
+            <div class="timeline-item"><strong>Hiện tại — Xây nền tảng</strong><span>Học lập trình, thuật toán, web và quy trình làm việc nhóm.</span></div>
+            <div class="timeline-item"><strong>Tiếp theo — Hoàn thiện sản phẩm</strong><span>Xây dựng demo, quản lý mã nguồn và viết tài liệu cho dự án.</span></div>
+            <div class="timeline-item"><strong>Mục tiêu dài hạn — Tạo giá trị</strong><span>Trở thành Software Engineer và phát triển các sản phẩm game/app có ích cho người dùng.</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact" id="contact">
+        <div class="container">
+          <div class="eyebrow">05 / Liên hệ</div>
+          <h2>Cùng học hỏi và tạo ra điều có ích.</h2>
+          <p>Nếu bạn muốn trao đổi về lập trình, dự án game hoặc cơ hội học tập và làm việc nhóm, mình rất sẵn lòng kết nối.</p>
+          <p><strong>Email:</strong> <a href="mailto:duchien49@gmail.com">duchien49@gmail.com</a></p>
+          <p><strong>GitHub:</strong> <a href="https://github.com/duchien49" target="_blank" rel="noopener noreferrer">github.com/duchien49</a></p>
+          <p class="small-note">Nếu email hoặc liên kết GitHub chưa đúng, hãy sửa lại trước khi công khai website.</p>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="container">© <span id="year">2026</span> Hiền Đức · Portfolio cá nhân · Học hỏi để xây dựng sản phẩm tốt hơn.</div>
+    </footer>
+  </div>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
